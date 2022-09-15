@@ -2,6 +2,11 @@
 
 #include "SensorDeLuz.h"
 
+/**
+ * @brief Constuir un nuevo objeto de la clase Sensor De Luz
+ * 
+ * @param direccion La direccion I2C del sensor
+ */
 SensorDeLuz::SensorDeLuz(byte direccion)
 {
     direccionI2C = direccion;

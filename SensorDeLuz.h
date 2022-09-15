@@ -1,5 +1,6 @@
 // Esta es una implementación (adaptada al proyecto) de la librería BH1750 escrita por Christopher Laws.
 
+#include <Arduino.h>
 #include <Wire.h>
 
 // Estado inactivo
@@ -53,6 +54,8 @@ private:
     TwoWire* I2C;
     // Se guarda el timestamp de la ultima medicion para saber si el sensor esta listo para medir nuevamente
     unsigned long ultimaMedicion;
+    // Se usa para establecer en el sensor el tiempo de medida de acuerdo con las especificaciones del datasheet
     bool definirTiempoDeMedida();
+    //Funcion auxiliar para revisar el retorno del sensor
     bool revisarack(byte ack);
 };
