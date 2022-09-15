@@ -38,14 +38,21 @@ public:
     bool empezar(Modo modo = CONTINUOUS_HIGH_RES_MODE, byte direccion = DEFAULT_ADDRESS, TwoWire *i2c = nullptr);
     bool configurar(Modo modo);
     bool listoParaMedir(bool esperaMaxima = false);
-    int leerNiveldeLuz();
+    float leerNiveldeLuz();
 
 private:
+    // La direccion I2C del sensor
     byte direccionI2C;
+    // El tiempo define la ventana de medida
     byte tiempodDeMedida;
     // Este es el factor usado para calcular la cantidad de lux. El valor tipico es de 1.2 pero puede variar entre 0.96 y 1.44
     const float factorDeConversion = 1.2;
+    // El modo por defecto es de estado inactivo
     Modo MODO = UNCONFIGURED;
+    // Un objeto que permite controlar la comunicacion fisica con el sensor
     TwoWire* I2C;
+    // Se guarda el timestamp de la ultima medicion para saber si el sensor esta listo para medir nuevamente
     unsigned long ultimaMedicion;
+    bool definirTiempoDeMedida();
+    bool revisarack(byte ack);
 };
