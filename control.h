@@ -8,7 +8,9 @@ class Controlador{
         int pinDat;
         //Objeto del sensor de luz
         SensorDeLuz sensor;
-
+        //Pin del SPI para la tarjeta SD
+        int pinSPI;
     public:
         void establecerBaudRate(int baudRate);
+        Controlador(int AOut, int Dat, int pinSPI);
 };
