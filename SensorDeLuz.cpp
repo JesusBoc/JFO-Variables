@@ -106,31 +106,36 @@ bool SensorDeLuz::listoParaMedir(bool esperaMaxima)
 
 /**
  * @brief Leer el nivel de luz del sensor
- * 
+ *
  * @return Nivel de luz en luxes (0.0 ~ 54612,5)
  * -1 : Valor invalido
  * -2 : El sensor no esta configurado
  */
-float SensorDeLuz::leerNiveldeLuz(){
-    if(MODO == UNCONFIGURED){
+float SensorDeLuz::leerNiveldeLuz()
+{
+    if (MODO == UNCONFIGURED)
+    {
         Serial.println(F("[BH1750] El dispositivo no esta configurado"));
         return -2.0;
     }
 
     float nivel = -1.0;
 
-    if(2 == I2C->requestFrom((int)direccionI2C,(int)2)){
+    if (2 == I2C->requestFrom((int)direccionI2C, (int)2))
+    {
         unsigned int tmp = 0;
         tmp = I2C->read();
-        tmp <<=8;
+        tmp <<= 8;
         tmp |= I2C->read();
         nivel = tmp;
     }
     ultimaMedicion = millis();
-    if (nivel == -1.0) return nivel;
-    if (MODO == ONE_TIME_HIGH_RES_MODE_2 || MODO == CONTINUOUS_HIGH_RES_MODE_2) nivel /= 2;
+    if (nivel == -1.0)
+        return nivel;
+    if (MODO == ONE_TIME_HIGH_RES_MODE_2 || MODO == CONTINUOUS_HIGH_RES_MODE_2)
+        nivel /= 2;
 
-    nivel /= factorDeConversion; 
+    nivel /= factorDeConversion;
 
     return nivel;
 }
