@@ -47,8 +47,8 @@ float SensorDHT::leerTemperatura(bool forzar)
 /**
  * @brief Metodo para leer la temperatura usando la forma de lectura del datasheet del sensor
  *
- * @param forzar
- * @return float
+ * @param forzar booleano para definir si se mide aunque no haya pasado el tiempo minimo
+ * @return float el valor de la humedad relativa en porcentaje
  */
 float SensorDHT::leerHumedad(bool forzar)
 {

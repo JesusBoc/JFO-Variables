@@ -9,15 +9,17 @@
 float temperatura, humedad;
 SensorDHT dht(DHT11TESTPIN);
 SensorDeLuz sensor;
+TwoWire I2C = TwoWire(0);
 
-
-void setup(){
+void setup()
+{
     Serial.begin(115200);
     dht.empezar();
-    Wire.begin();
-    sensor.empezar();
+    I2C.begin();
+    sensor.empezar(&I2C);
 }
-void loop(){
+void loop()
+{
     temperatura = dht.leerTemperatura();
     humedad = dht.leerHumedad();
     Serial.print("Temperatura: ");

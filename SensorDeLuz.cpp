@@ -18,16 +18,13 @@ SensorDeLuz::SensorDeLuz(byte direccion)
 /// @param direccion La direccion I2C del sensor
 /// @param i2c El objeto encargado de gestionar la comunicacion I2C con el sensor
 /// @return
-bool SensorDeLuz::empezar(Modo modo, byte direccion, TwoWire *i2c)
+bool SensorDeLuz::empezar(TwoWire *i2c, Modo modo, byte direccion)
 {
     if(i2c) I2C = i2c;
     direccionI2C = direccion;
     return (configurar(modo) && definirTiempoDeMedida());
 }
 
-bool SensorDeLuz::empezar(TwoWire *i2c){
-    I2C = i2c;
-}
 
 /// @brief Aqui se intenta definir el tiempo de medida interno del sensor, usando el metodo descrito en el datasheet
 /// @return Verdadero si se pudo definir, falso si no

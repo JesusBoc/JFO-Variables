@@ -36,11 +36,10 @@ public:
         ONE_TIME_LOW_RES_MODE = 0x23
     };
     SensorDeLuz(byte direccion = DEFAULT_ADDRESS);
-    bool empezar(Modo modo = CONTINUOUS_HIGH_RES_MODE, byte direccion = DEFAULT_ADDRESS, TwoWire *i2c = nullptr);
+    bool empezar(TwoWire *i2c = nullptr, Modo modo = CONTINUOUS_HIGH_RES_MODE, byte direccion = DEFAULT_ADDRESS);
     bool configurar(Modo modo);
     bool listoParaMedir(bool esperaMaxima = false);
     float leerNiveldeLuz();
-    bool empezar(TwoWire *i2c);
 
 private:
     // La direccion I2C del sensor
