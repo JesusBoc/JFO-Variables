@@ -10,6 +10,7 @@
 SensorDeLuz::SensorDeLuz(byte direccion)
 {
     direccionI2C = direccion;
+    I2C = &Wire;
 }
 
 /// @brief Con este metodo se pretende empezar las mediciones y permitir recibir informacion del sensor
@@ -19,9 +20,13 @@ SensorDeLuz::SensorDeLuz(byte direccion)
 /// @return
 bool SensorDeLuz::empezar(Modo modo, byte direccion, TwoWire *i2c)
 {
-    I2C = i2c;
+    if(i2c) I2C = i2c;
     direccionI2C = direccion;
     return (configurar(modo) && definirTiempoDeMedida());
+}
+
+bool SensorDeLuz::empezar(TwoWire *i2c){
+    I2C = i2c;
 }
 
 /// @brief Aqui se intenta definir el tiempo de medida interno del sensor, usando el metodo descrito en el datasheet

@@ -40,6 +40,7 @@ public:
     bool configurar(Modo modo);
     bool listoParaMedir(bool esperaMaxima = false);
     float leerNiveldeLuz();
+    bool empezar(TwoWire *i2c);
 
 private:
     // La direccion I2C del sensor
