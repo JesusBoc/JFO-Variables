@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 #define MEDIDA_AIRE 3631
 #define MEDIDA_AGUA 1978
 
