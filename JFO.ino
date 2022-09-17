@@ -1,35 +1,40 @@
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
-#include "Wire.h"
-#include "SensorDHT.h"
-#include "SensorDeLuz.h"
+#include "control.h"
 
 #define DHT11TESTPIN 26
-float temperatura, humedad;
-SensorDHT dht(DHT11TESTPIN);
-SensorDeLuz sensor;
-TwoWire I2C = TwoWire(0);
+#define HIGROMETROTESTPIN 27
+float temperatura, humedad, humedadSuelo, lux;
+Controlador JFO(HIGROMETROTESTPIN,DHT11TESTPIN);
 
 void setup()
 {
     Serial.begin(115200);
-    dht.empezar();
-    I2C.begin();
-    sensor.empezar(&I2C);
+    Serial.println("Configurado");
+    Wire.begin();
+    Serial.println("Configurado");
+    JFO.empezar();
+    Serial.println("Configurado");
 }
 void loop()
 {
-    temperatura = dht.leerTemperatura();
-    humedad = dht.leerHumedad();
+    Serial.println("-----------------------------------------");
+    temperatura = JFO.medirTemperatura();
+    humedad = JFO.medirHumedad();
+    humedadSuelo = JFO.medirHumedadSuelo();
+    lux = JFO.medirLuz();
     Serial.print("Temperatura: ");
     Serial.println(temperatura);
-    Serial.print("Humedad: ");
+    Serial.print("Humedad del aire: ");
     Serial.print(humedad);
     Serial.println(" %");
-    float lux = sensor.leerNiveldeLuz();
     Serial.print("Luz: ");
     Serial.print(lux);
     Serial.println(" lx");
+    Serial.print("Humedad del suelo: ");
+    Serial.print(humedadSuelo);
+    Serial.println(" %");
+    Serial.println("-----------------------------------------");
     delay(3000);
 }
