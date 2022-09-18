@@ -5,11 +5,11 @@
 class Archivos
 {
 private:
-    /* data */
+    SDFS* manejadorDeArchivos;
 public:
-    Archivos(/* args */);
+    Archivos();
+    bool empezar();
+    bool escribirArchivo(const char *direccion, const char *contenido);
+    bool agregarAlArchivo(const char *direccion, const char *contenido);
+    SDFS sd();
 };
-
-Archivos::Archivos()
-{
-}
