@@ -1,6 +1,7 @@
 #include "SensorDeLuz.h"
 #include "SensorDHT.h"
 #include "higrometro.h"
+#include "Archivos.h"
 
 class Controlador
 {
@@ -11,6 +12,8 @@ private:
     SensorDeLuz* sensorDeLuz;
     // Objeto del sensor de humedad y temperatura del aire
     SensorDHT* dht;
+    // Objeto del gestor de archivos del sistema
+    Archivos* archivos;
 public:
     Controlador(int AOut, int Dat);
     bool empezar(TwoWire *I2C = nullptr);
