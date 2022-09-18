@@ -33,6 +33,14 @@ bool Archivos::escribirArchivo(const char *direccion, const char *contenido){
     archivo.close();
     return false;
 }
+/**
+ * @brief Este metodo permite agregar informacion un archivo en la tarjeta SD montada usando el protocolo SPI
+ * 
+ * @param direccion La direccion del archivo a agregarle
+ * @param contenido El contenido a agregar
+ * @return true Si se pudo escribir el archivo
+ * @return false Si no se pudo escribir el archivo
+ */
 bool Archivos::agregarAlArchivo(const char *direccion, const char *contenido){
     Serial.printf("Escribiendo en el archivo: %s\n", direccion);
 
@@ -50,6 +58,12 @@ bool Archivos::agregarAlArchivo(const char *direccion, const char *contenido){
     archivo.close();
     return false;
 }
+/**
+ * @brief Monta el sistema de la tarjeta SD 
+ * 
+ * @return true Si se pudo montar el sistema
+ * @return false Si no pudo montarse
+ */
 bool Archivos::empezar(){
     if(!manejadorDeArchivos->begin()){
         Serial.printf("Fallo al montar la tarjeta SD");
@@ -57,6 +71,11 @@ bool Archivos::empezar(){
     }
     return true;
 }
+/**
+ * @brief Retorna el objeto que maneja los archivos
+ * 
+ * @return SDFS el objeto
+ */
 SDFS Archivos::sd(){
     return *manejadorDeArchivos;
 }
