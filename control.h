@@ -11,7 +11,6 @@ private:
     SensorDeLuz* sensorDeLuz;
     // Objeto del sensor de humedad y temperatura del aire
     SensorDHT* dht;
-    // Objeto del I2C
 public:
     Controlador(int AOut, int Dat);
     bool empezar(TwoWire *I2C = nullptr);
