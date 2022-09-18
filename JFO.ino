@@ -1,6 +1,3 @@
-#include "FS.h"
-#include "SD.h"
-#include "SPI.h"
 #include "control.h"
 
 #define DHT11TESTPIN 26
