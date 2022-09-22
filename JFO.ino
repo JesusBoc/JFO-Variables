@@ -9,11 +9,8 @@ String guardar;
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("Configurado");
     Wire.begin();
-    Serial.println("Configurado");
     JFO.empezar();
-    Serial.println("Configurado");
 }
 void loop()
 {
