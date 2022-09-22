@@ -8,11 +8,15 @@ Controlador::Controlador(int aout, int Dat){
 }
 
 float Controlador::medirHumedad(bool forzar){
-    return dht->leerHumedad(forzar);
+    float resultado = dht->leerHumedad(forzar);
+    ultimaMedicion.humedadDelAire = resultado;
+    return resultado;
 }
 
 float Controlador::medirTemperatura(bool forzar){
-    return dht->leerTemperatura();
+    float resultado = dht->leerTemperatura(forzar);
+    ultimaMedicion.temperatura = resultado;
+    return resultado;
 }
 
 float Controlador::calcularSensacionTermica(){
@@ -20,11 +24,15 @@ float Controlador::calcularSensacionTermica(){
 }
 
 float Controlador::medirLuz(){
-    return sensorDeLuz->leerNiveldeLuz();
+    float resultado = sensorDeLuz->leerNiveldeLuz();
+    ultimaMedicion.lux = resultado;
+    return resultado;
 }
 
 int Controlador::medirHumedadSuelo(){
-    return higrometro->medirHumedad();
+    float resultado = higrometro->medirHumedad();
+    ultimaMedicion.humedadDelSuelo = resultado;
+    return resultado;
 }
 
 bool Controlador::empezar(TwoWire *I2C){
@@ -37,4 +45,7 @@ bool Controlador::empezar(TwoWire *I2C){
 }
 bool Controlador::agregarAlLog(String log){
     return archivos->agregarAlArchivo(DIRECCION_DE_LOG,log);
+}
+medidas Controlador::obtenerMedidas(){
+    return ultimaMedicion;
 }
