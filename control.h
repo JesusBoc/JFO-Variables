@@ -36,6 +36,7 @@ public:
     float medirLuz();
     int medirHumedadSuelo();
     bool agregarAlLog(String log);
+    bool resetearLog();
     medidas obtenerMedidas();
 };
 #endif

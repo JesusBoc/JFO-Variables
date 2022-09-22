@@ -49,3 +49,6 @@ bool Controlador::agregarAlLog(String log){
 medidas Controlador::obtenerMedidas(){
     return ultimaMedicion;
 }
+bool Controlador::resetearLog(){
+    return archivos->eliminarArchivo(DIRECCION_DE_LOG);
+}
