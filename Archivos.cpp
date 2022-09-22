@@ -6,7 +6,6 @@
  */
 Archivos::Archivos(){
     manejadorDeArchivos = &SD;
-    SD.begin();
 }
 /**
  * @brief Este metodo permite escribir un archivo en la tarjeta SD montada usando el protocolo SPI
@@ -16,7 +15,7 @@ Archivos::Archivos(){
  * @return true Si se pudo escribir el archivo
  * @return false Si no se pudo escribir el archivo
  */
-bool Archivos::escribirArchivo(const char *direccion, const char *contenido){
+bool Archivos::escribirArchivo(const char *direccion,String contenido){
     Serial.printf("Escribiendo archivo: %s\n", direccion);
 
     File archivo = manejadorDeArchivos->open(direccion, FILE_WRITE);
@@ -41,7 +40,7 @@ bool Archivos::escribirArchivo(const char *direccion, const char *contenido){
  * @return true Si se pudo escribir el archivo
  * @return false Si no se pudo escribir el archivo
  */
-bool Archivos::agregarAlArchivo(const char *direccion, const char *contenido){
+bool Archivos::agregarAlArchivo(const char *direccion, String contenido){
     Serial.printf("Escribiendo en el archivo: %s\n", direccion);
 
     File archivo = manejadorDeArchivos->open(direccion, FILE_APPEND);
@@ -65,6 +64,7 @@ bool Archivos::agregarAlArchivo(const char *direccion, const char *contenido){
  * @return false Si no pudo montarse
  */
 bool Archivos::empezar(){
+    Serial.println("Intentando configurar");
     if(!manejadorDeArchivos->begin()){
         Serial.printf("Fallo al montar la tarjeta SD");
         return false;

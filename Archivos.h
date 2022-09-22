@@ -2,6 +2,8 @@
 #include "SD.h"
 #include "SPI.h"
 
+#ifndef ARCHIVOS_H
+#define ARCHIVOS_H
 class Archivos
 {
 private:
@@ -9,7 +11,9 @@ private:
 public:
     Archivos();
     bool empezar();
-    bool escribirArchivo(const char *direccion, const char *contenido);
-    bool agregarAlArchivo(const char *direccion, const char *contenido);
+    bool escribirArchivo(const char *direccion, String contenido);
+    bool agregarAlArchivo(const char *direccion, String contenido);
     SDFS sd();
 };
+
+#endif

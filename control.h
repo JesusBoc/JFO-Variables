@@ -3,6 +3,8 @@
 #include "higrometro.h"
 #include "Archivos.h"
 
+#define DIRECCION_DE_LOG "/log.txt"
+
 class Controlador
 {
 private:
@@ -22,4 +24,5 @@ public:
     float calcularSensacionTermica();
     float medirLuz();
     int medirHumedadSuelo();
+    bool agregarAlLog(String log);
 };
