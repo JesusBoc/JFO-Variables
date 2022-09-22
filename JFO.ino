@@ -23,13 +23,13 @@ void setup()
 }
 void loop()
 {
-    mostrarTemperatura();
-    mostrarHumedadDelAire();
-    mostrarLuz();
-    mostrarHumedadDelSuelo();
-    separar();
-    guardarMedidasEnArchivo();
     esperar();
+    separar();
+    mostrarLuz();
+    mostrarHumedadDelAire();
+    mostrarHumedadDelSuelo();
+    mostrarTemperatura();
+    guardarMedidasEnArchivo();
 }
 
 void configurar(){
