@@ -1,4 +1,4 @@
-#include "Archivos.h"
+#include "Archivos.h""
 
 /**
  * @brief Construye un objeto de la clase Archivos
@@ -70,6 +70,15 @@ bool Archivos::empezar(){
         return false;
     }
     return true;
+}
+bool Archivos::eliminarArchivo(const char* direcccion){
+    Serial.printf("Borrando archivo: %s\n", direcccion);
+    if(manejadorDeArchivos->remove(direcccion)){
+        Serial.println("Archivo borrado");
+        return true;
+    }
+    Serial.println("Fallo al borrar");
+    return false;
 }
 /**
  * @brief Retorna el objeto que maneja los archivos

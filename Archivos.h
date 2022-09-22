@@ -13,6 +13,7 @@ public:
     bool empezar();
     bool escribirArchivo(const char *direccion, String contenido);
     bool agregarAlArchivo(const char *direccion, String contenido);
+    bool eliminarArchivo(const char *direccion);
     SDFS sd();
 };
 
