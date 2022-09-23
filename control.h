@@ -4,6 +4,15 @@
 #include "SensorDHT.h"
 #include "higrometro.h"
 #include "Archivos.h"
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WebServer.h>
+#include <ESPmDNS.h>
+
+#ifndef SSID
+#define SSID "Test"
+#define PASSWORD "12345678"
+#endif
 
 #define DIRECCION_DE_LOG "/log.txt"
 
@@ -27,7 +36,10 @@ private:
     Archivos* archivos;
     // Struct con las ultimas mediciones
     medidas ultimaMedicion;
+    // Objeto del servidor
+    WebServer* servidor;
 public:
+    File entregarArchivo(String direccion);
     Controlador(int AOut, int Dat);
     bool empezar(TwoWire *I2C = nullptr);
     float medirHumedad(bool forzar = false);
@@ -38,5 +50,12 @@ public:
     bool agregarAlLog(String log);
     bool resetearLog();
     medidas obtenerMedidas();
+    void onNotFound(WebServer::THandlerFunction fn);
+    void enviarArchivo(const char *uri, const char *direccion);
+    void responderConArchivo(File archivo,String tipo_contenido);
+    void enviarTexto(int codigo, const char *tipo_contenido, String contenido);
+    void agregarFuncion(const char *uri, WebServer::THandlerFunction fn);
+    void manejarClienteWeb();
+    WebServer* obtenerObjServidor();
 };
 #endif
